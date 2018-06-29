@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\GameMgr.cs" />
     <Compile Include="Assets\Scripts\HiResScreenShots.cs" />
     <Compile Include="Assets\Scripts\MouseTarget.cs" />
+    <Compile Include="Assets\Scripts\playButton.cs" />
     <Compile Include="Assets\Scripts\videoWaitMessage.cs" />
     <Reference Include="Cinemachine">
       <HintPath>M:/Desktop Backup/AR-VR/Work/GitHub/MudMud/ArtStudio/Library/ScriptAssemblies/Cinemachine.dll</HintPath>

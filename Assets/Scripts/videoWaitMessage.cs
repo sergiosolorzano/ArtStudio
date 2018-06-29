@@ -8,7 +8,6 @@ public class videoWaitMessage : MonoBehaviour {
     public RawImage image;
     
     public VideoClip videoToPlay;
-
     private VideoPlayer videoPlayer;
     private VideoSource videoSource;
 
@@ -18,21 +17,26 @@ public class videoWaitMessage : MonoBehaviour {
     void Start()
     {
         Application.runInBackground = true;
+        StartCoroutine(PrepareVideo());
+    }
+
+    public void playVid()
+    {
         StartCoroutine(playVideo());
     }
 
-    IEnumerator playVideo()
+    IEnumerator PrepareVideo()
     {
-
         //Add VideoPlayer to the GameObject
-        videoPlayer = gameObject.AddComponent<VideoPlayer>();
+        //videoPlayer = gameObject.AddComponent<VideoPlayer>();
+        videoPlayer = GetComponent<VideoPlayer>();
 
         //Add AudioSource
         audioSource = gameObject.AddComponent<AudioSource>();
 
         //Disable Play on Awake for both Video and Audio
-        videoPlayer.playOnAwake = true;
-        audioSource.playOnAwake = true;
+        videoPlayer.playOnAwake = false;
+        audioSource.playOnAwake = false;
         audioSource.Pause();
 
         //We want to play from video clip not from url
@@ -42,6 +46,7 @@ public class videoWaitMessage : MonoBehaviour {
         // Vide clip from Url
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = "https://www.masfinance.co.uk/instructions.mp4";
+        //videoPlayer.url = "https://www.youtube.com/watch?v=o5M3KJ8biU8";
 
         //Set Audio Output to AudioSource
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
@@ -54,6 +59,19 @@ public class videoWaitMessage : MonoBehaviour {
         videoPlayer.clip = videoToPlay;
         videoPlayer.Prepare();
 
+        while (!videoPlayer.isPrepared)
+        {
+            yield return null;
+        }
+
+        Debug.Log("Done Preparing Video");
+    }
+
+    IEnumerator playVideo()
+    {
+        //Assign the Texture from Video to RawImage to be displayed
+        image.texture = videoPlayer.texture;
+
         //Wait until video is prepared
         while (!videoPlayer.isPrepared)
         {
@@ -62,17 +80,12 @@ public class videoWaitMessage : MonoBehaviour {
 
         Debug.Log("Done Preparing Video");
 
-        //Assign the Texture from Video to RawImage to be displayed
-        image.texture = videoPlayer.texture;
-        
-
         //Play Video
         videoPlayer.Play();
 
         //Play Sound
         audioSource.Play();
 
-        Debug.Log("Playing Video");
         while (videoPlayer.isPlaying)
         {
             yield return null;
