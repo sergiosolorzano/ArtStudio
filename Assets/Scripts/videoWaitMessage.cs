@@ -41,7 +41,7 @@ public class videoWaitMessage : MonoBehaviour {
 
         // Vide clip from Url
         videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = "http://www.masfinance.co.uk/instructions.mp4";
+        videoPlayer.url = "https://www.masfinance.co.uk/instructions.mp4";
 
         //Set Audio Output to AudioSource
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;

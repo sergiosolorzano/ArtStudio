@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class ExitButton : MonoBehaviour {
+public class ExitButton : MonoBehaviour, IPointerDownHandler {
     public Sprite[] exitButton;
     private bool turn;
     private Image curImage;
@@ -14,7 +15,6 @@ public class ExitButton : MonoBehaviour {
 
     void Start ()
     {
-        FullScreen();
         curImage = transform.GetComponent<Image>();
 	}
 
@@ -36,20 +36,22 @@ public class ExitButton : MonoBehaviour {
                 curImage.sprite = exitButton[0];
             repeat = 2f;
         }
-
+        /*
         if (Input.GetKeyDown("escape"))
         {
             loadingMssg.enabled = true;
             StartCoroutine(ChangeScene());
-        }
+        }*/
             
     }
 
-    private void OnMouseDown()
+    /*private void OnMouseDown()
     {
         loadingMssg.enabled = true;
+        FullScreen();
+        Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(ChangeScene());
-    }
+    }*/
 
     IEnumerator ChangeScene()
     {
@@ -62,4 +64,11 @@ public class ExitButton : MonoBehaviour {
         }
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        loadingMssg.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        FullScreen();
+        StartCoroutine(ChangeScene());
+    }
 }
