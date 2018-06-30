@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
 
-public class ExitButton: MonoBehaviour {
+public class ExitButton: MonoBehaviour,IPointerDownHandler {
     public Sprite[] exitButton;
     public VideoPlayer vidPlayer;
     private bool turn;
@@ -14,16 +14,10 @@ public class ExitButton: MonoBehaviour {
     private float repeat = 2f;
     public Text loadingMssg;
 
-
     void Start ()
     {
         curImage = transform.GetComponent<Image>();
 	}
-
-    public void FullScreen()
-    {
-        Screen.fullScreen = !Screen.fullScreen;
-    }
 
     void Update()
     {
@@ -51,38 +45,12 @@ public class ExitButton: MonoBehaviour {
         }
     }
 
-    public void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
-            loadingMssg.enabled = true;
-            vidPlayer.Pause();
-            FullScreen();
-            Cursor.lockState = CursorLockMode.Locked;
-            StartCoroutine(ChangeScene());
+        loadingMssg.enabled = true;
+        vidPlayer.Pause();
+        Screen.fullScreen=true;
+        //Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(ChangeScene());
     }
 }
-
-
-
-
-
-
-
-
-    /*
-        if (Input.GetKeyDown("escape"))
-        {
-            loadingMssg.enabled = true;
-            StartCoroutine(ChangeScene());
-        }*/
-
-
-
-/*private void OnMouseDown()
-{
-
-    loadingMssg.enabled = true;
-    vidPlayer.Pause();
-    FullScreen();
-    Cursor.lockState = CursorLockMode.Locked;
-    StartCoroutine(ChangeScene());
-}*/
