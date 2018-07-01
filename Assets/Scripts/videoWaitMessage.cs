@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class videoWaitMessage : MonoBehaviour {
     public RawImage image;
     public Text vidLoadMssg;
+    public Text pressStartMssg;
     public VideoClip videoToPlay;
     private VideoPlayer videoPlayer;
     private VideoSource videoSource;
+    private bool fadeIn = true;
 
     //private AudioSource audioSource;
 
@@ -17,13 +19,7 @@ public class videoWaitMessage : MonoBehaviour {
     void Start()
     {
         Application.runInBackground = true;
-        FullScreen();
         StartCoroutine(PlayVideo());
-    }
-
-    public void FullScreen()
-    {
-        Screen.fullScreen = !Screen.fullScreen;
     }
 
     IEnumerator PlayVideo()
@@ -61,6 +57,7 @@ public class videoWaitMessage : MonoBehaviour {
         videoPlayer.Prepare();
         vidLoadMssg.enabled = true;
 
+
         while (!videoPlayer.isPrepared)
         {
             yield return null;
@@ -83,13 +80,46 @@ public class videoWaitMessage : MonoBehaviour {
         {
             yield return null;
         }
-
         Debug.Log("Done Playing Video");
+
+        //Fade Message
+        pressStartMssg.enabled = true;
+
+        if (fadeIn)
+        {
+            pressStartMssg.color = new Color(pressStartMssg.color.r, pressStartMssg.color.g, pressStartMssg.color.b, 0);
+            StartCoroutine(FadeTextInOut(3, pressStartMssg));
+        }
+        else
+        {
+            pressStartMssg.color = new Color(pressStartMssg.color.r, pressStartMssg.color.g, pressStartMssg.color.b, 1);
+            StartCoroutine(FadeTextInOut(3, pressStartMssg));
+        }
     }
 
-    // Update is called once per frame
+    public IEnumerator FadeTextInOut(float t, Text i)
+    {
+        while(true)
+        {
+            while (i.color.a < 1.0f)
+            {
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+                yield return null;
+            }
+
+            fadeIn = !fadeIn;
+
+            while (i.color.a > 0.0f)
+            {
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+                yield return null;
+            }
+
+            fadeIn = !fadeIn;
+        }
+    }
+
     void Update()
     {
-
     }
 }

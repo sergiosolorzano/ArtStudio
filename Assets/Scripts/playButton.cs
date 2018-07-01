@@ -44,13 +44,4 @@ public class playButton : MonoBehaviour {
             
         
     }
-    /*
-    public void OnMouseDown()
-    {
-        image.enabled=true;
-        loadingMssg.enabled = true;
-        videoScript.playVid();
-        //vidPlayer.Play();
-        
-    }*/
 }

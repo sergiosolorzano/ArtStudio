@@ -9,25 +9,23 @@ using UnityEngine.Events;
 public class FadeMssg : MonoBehaviour, IPointerDownHandler {
     private bool fade=true;
     public Text clickMssg;
-    public bool isUIOverride { get; private set; }
 
     public void Update()
     {
+        Debug.Log("fade " + fade);
         if (fade)
         {
-            clickMssg.CrossFadeAlpha(0, 6.0f, false);
-            Debug.Log("fading on");
+            clickMssg.CrossFadeAlpha(0, 4.0f, false);
         }
         else
         {
             clickMssg.CrossFadeAlpha(0, 0.0f, false);
-            Debug.Log("fading off");
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Inside Pointer");
+        Cursor.lockState = CursorLockMode.Locked;
         fade = false;
     }
 }
