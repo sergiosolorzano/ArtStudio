@@ -49,7 +49,6 @@ public class ExitButton: MonoBehaviour,IPointerDownHandler {
     {
         loadingMssg.enabled = true;
         vidPlayer.Pause();
-        Screen.fullScreen=true;
         //Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(ChangeScene());
     }

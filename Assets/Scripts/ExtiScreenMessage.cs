@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler {
     public Text mssg;
     public Text [] mssgType;
     public bool showEscOrMax;
@@ -39,7 +39,7 @@ public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         mssg.color = new Color(mssg.color.r, mssg.color.g, mssg.color.b, 0.5f);
     }
-    /*
+    
     public void OnPointerUp(PointerEventData eventData)
     {
         if(showEscOrMax)
@@ -47,7 +47,8 @@ public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerEx
             Screen.fullScreen = true;
             //Cursor.lockState = CursorLockMode.Locked;
             SwitchMssg();
+            Debug.Log("Pressed Exc");
         }
             
-    }*/
+    }
 }
