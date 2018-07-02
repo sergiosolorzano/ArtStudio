@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler{
+public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Text mssg;
     public Text [] mssgType;
     public bool showEscOrMax;
@@ -14,7 +14,6 @@ public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerEx
     // Use this for initialization
     void Start ()
     {
-        Application.ExternalCall("SendEscMssg");
     }
 	
 	// Update is called once per frame
@@ -28,11 +27,11 @@ public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerEx
         showEscOrMax = !showEscOrMax;
         mssg = mssgType[Convert.ToInt32(showEscOrMax)];
         mssg.enabled = true;
+        Debug.Log("At switchMssg function in unity");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        
         mssg.color = new Color(mssg.color.r, mssg.color.g, mssg.color.b, 1);
     }
 
@@ -40,15 +39,15 @@ public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         mssg.color = new Color(mssg.color.r, mssg.color.g, mssg.color.b, 0.5f);
     }
-
+    /*
     public void OnPointerUp(PointerEventData eventData)
     {
         if(showEscOrMax)
         {
             Screen.fullScreen = true;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             SwitchMssg();
         }
             
-    }
+    }*/
 }

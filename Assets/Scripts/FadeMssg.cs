@@ -12,7 +12,6 @@ public class FadeMssg : MonoBehaviour, IPointerDownHandler {
 
     public void Update()
     {
-        Debug.Log("fade " + fade);
         if (fade)
         {
             clickMssg.CrossFadeAlpha(0, 4.0f, false);
