@@ -5,17 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
 
-public class playButton : MonoBehaviour {
+public class playButton : MonoBehaviour, IPointerClickHandler {
 
-    public RawImage image;
     public Sprite[] playButt;
-    public VideoPlayer vidPlayer;
     private bool turn;
     private Image curImage;
     private float repeat = 2f;
-    public Text loadingMssg;
-    public videoWaitMessage videoScript;
-
+    public VideoPlayer vidPlayer;
+    private videoWaitMessage videoScript;
 
     void Start()
     {
@@ -31,17 +28,25 @@ public class playButton : MonoBehaviour {
         {
             turn = !turn;
             if (turn)
-                curImage.sprite = playButt[1];
-            else
                 curImage.sprite = playButt[0];
+            else
+                curImage.sprite = playButt[1];
             repeat = 2f;
         }
-        if (vidPlayer.isPlaying)
+        /*if (vidPlayer.isPlaying)
         {
             loadingMssg.enabled = false;
             gameObject.SetActive(false);
-        }
+        }*/
             
         
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        curImage.enabled = false;
+        Screen.fullScreen = true;
+        videoScript.enabled = true;
+        gameObject.SetActive(false);
     }
 }

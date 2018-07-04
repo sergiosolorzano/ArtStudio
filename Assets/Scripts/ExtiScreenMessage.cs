@@ -5,15 +5,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+//using System.Runtime.InteropServices;
 
-public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler {
+public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public Text mssg;
     public Text [] mssgType;
     public bool showEscOrMax;
 
+    //[DllImport("__Internal")]
+    //private static extern void LibraryFullScreen();
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
+        if (Screen.fullScreen == false)
+        {
+            ToSmallScrn();
+        }
+        else
+        {
+            ToFullScrn();
+        }
     }
 	
 	// Update is called once per frame
@@ -21,34 +33,25 @@ public class ExtiScreenMessage : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
 	}
 
-    public void SwitchMssg()
+    public void ToFullScrn()
     {
-        mssg.enabled = false;
-        showEscOrMax = !showEscOrMax;
-        mssg = mssgType[Convert.ToInt32(showEscOrMax)];
-        mssg.enabled = true;
-        Debug.Log("At switchMssg function in unity");
+        mssgType[0].enabled = true;
+        Debug.Log("Box with full scrn");
+    }
+    public void ToSmallScrn()
+    {
+        mssgType[0].enabled = false;
+        Debug.Log("Box off full scrn");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+
         mssg.color = new Color(mssg.color.r, mssg.color.g, mssg.color.b, 1);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         mssg.color = new Color(mssg.color.r, mssg.color.g, mssg.color.b, 0.5f);
-    }
-    
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if(showEscOrMax)
-        {
-            Screen.fullScreen = true;
-            //Cursor.lockState = CursorLockMode.Locked;
-            SwitchMssg();
-            Debug.Log("Pressed Exc");
-        }
-            
     }
 }

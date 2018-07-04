@@ -1,0 +1,13 @@
+{
+"companyName": "MasFinance",
+"productName": "ArtStudio",
+"dataUrl": "CpanelBuildGL.data.unityweb",
+"asmCodeUrl": "CpanelBuildGL.asm.code.unityweb",
+"asmMemoryUrl": "CpanelBuildGL.asm.memory.unityweb",
+"asmFrameworkUrl": "CpanelBuildGL.asm.framework.unityweb",
+"TOTAL_MEMORY": 419430400,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <title>Unity WebGL Player | ArtStudio</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>  
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/IISBuildGL.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 980px; height: 650px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="title">ArtStudio</div>
+      </div>
+    </div>
+    <script>
+     
+      //alert unity of screen size change
+      var element = document.getElementById("gameContainer");
+      
+      document.addEventListener("fullscreenchange", onFullScreenChange, false);
+      document.addEventListener("fullScreenchange", onFullScreenChange, false);
+      document.addEventListener("webkitfullscreenchange", onFullScreenChange, false);
+      document.addEventListener("mozfullscreenchange", onFullScreenChange, false);
+
+      var docElm = document.documentElement;
+      function onFullScreenChange() 
+      {
+        var fullscreenElement = document.fullscreenElement || document.fullScreenElement ||
+        document.mozFullScreenElement || document.webkitFullscreenElement;
+
+      // if in fullscreen mode fullscreenElement won't be null
+        if(fullscreenElement!=null)
+        {
+          console.log("In full scrn");
+          gameInstance.SendMessage("Canvas", "ControlLargeScreenSize");
+          gameInstance.SendMessage("EscMssgImage", "ToFullScrn");
+        }
+        else
+        {
+          console.log("Not in full scrn");
+          gameInstance.SendMessage("EscMssgImage", "ToSmallScrn");
+        }
+      }
+
+      
+      
+    </script>
+  </body>
+</html>

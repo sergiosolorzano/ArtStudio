@@ -1,0 +1,14 @@
+{
+"companyName": "MasFinance",
+"productName": "ArtStudio",
+"dataUrl": "IISBuildGL.data.unityweb",
+"asmCodeUrl": "IISBuildGL.asm.code.unityweb",
+"asmMemoryUrl": "IISBuildGL.asm.memory.unityweb",
+"asmFrameworkUrl": "IISBuildGL.asm.framework.unityweb",
+"asmLibraryUrl": "IISBuildGL.asm.library.unityweb",
+"TOTAL_MEMORY": 419430400,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

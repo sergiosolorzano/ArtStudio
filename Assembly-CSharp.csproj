@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\ExtiScreenMessage.cs" />
     <Compile Include="Assets\Scripts\FadeMssg.cs" />
     <Compile Include="Assets\Scripts\playButton.cs" />
+    <Compile Include="Assets\Scripts\ScreenSize.cs" />
     <Compile Include="Assets\Scripts\UnUsedScripts\HiResScreenShots.cs" />
     <Compile Include="Assets\Scripts\UnUsedScripts\MinScreen.cs" />
     <Compile Include="Assets\Scripts\UnUsedScripts\MouseTarget.cs" />

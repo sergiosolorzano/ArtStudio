@@ -5,14 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
+using System.Runtime.InteropServices;
 
 public class ExitButton: MonoBehaviour,IPointerDownHandler {
     public Sprite[] exitButton;
     public VideoPlayer vidPlayer;
     private bool turn;
     private Image curImage;
+    public GameObject watchDemoImg;
     private float repeat = 2f;
     public Text loadingMssg;
+    public Text pressStartMssg;
+
+    [DllImport("__Internal")]
+    private static extern void LibraryFullScreen();
 
     void Start ()
     {
@@ -47,6 +53,11 @@ public class ExitButton: MonoBehaviour,IPointerDownHandler {
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        curImage.enabled = false;
+        watchDemoImg.SetActive(false);
+        Screen.fullScreen=true;
+        pressStartMssg.enabled = false;
+        Debug.Log("Screen full" + Screen.fullScreen);
         loadingMssg.enabled = true;
         vidPlayer.Pause();
         //Cursor.lockState = CursorLockMode.Locked;

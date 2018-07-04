@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
@@ -8,11 +9,13 @@ public class videoWaitMessage : MonoBehaviour {
     public RawImage image;
     public Text vidLoadMssg;
     public Text pressStartMssg;
+    public bool startMssgReady;
     public VideoClip videoToPlay;
     private VideoPlayer videoPlayer;
     private VideoSource videoSource;
     private bool fadeIn = true;
 
+    
     //private AudioSource audioSource;
 
     // Use this for initialization
@@ -20,6 +23,7 @@ public class videoWaitMessage : MonoBehaviour {
     {
         Application.runInBackground = true;
         StartCoroutine(PlayVideo());
+        image = GetComponent<RawImage>();
     }
 
     IEnumerator PlayVideo()
@@ -57,7 +61,6 @@ public class videoWaitMessage : MonoBehaviour {
         videoPlayer.Prepare();
         vidLoadMssg.enabled = true;
 
-
         while (!videoPlayer.isPrepared)
         {
             yield return null;
@@ -83,18 +86,24 @@ public class videoWaitMessage : MonoBehaviour {
         Debug.Log("Done Playing Video");
 
         //Fade Message
-        pressStartMssg.enabled = true;
-
-        if (fadeIn)
+        if ( (ulong)videoPlayer.frame==videoPlayer.frameCount)
         {
-            pressStartMssg.color = new Color(pressStartMssg.color.r, pressStartMssg.color.g, pressStartMssg.color.b, 0);
-            StartCoroutine(FadeTextInOut(3, pressStartMssg));
+            pressStartMssg.enabled = true;
+
+            if (fadeIn)
+            {
+                pressStartMssg.color = new Color(pressStartMssg.color.r, pressStartMssg.color.g, pressStartMssg.color.b, 0);
+                StartCoroutine(FadeTextInOut(3, pressStartMssg));
+            }
+            else
+            {
+                pressStartMssg.color = new Color(pressStartMssg.color.r, pressStartMssg.color.g, pressStartMssg.color.b, 1);
+                StartCoroutine(FadeTextInOut(3, pressStartMssg));
+            }
         }
         else
-        {
-            pressStartMssg.color = new Color(pressStartMssg.color.r, pressStartMssg.color.g, pressStartMssg.color.b, 1);
-            StartCoroutine(FadeTextInOut(3, pressStartMssg));
-        }
+            pressStartMssg.enabled = false;
+
     }
 
     public IEnumerator FadeTextInOut(float t, Text i)
@@ -118,8 +127,5 @@ public class videoWaitMessage : MonoBehaviour {
             fadeIn = !fadeIn;
         }
     }
-
-    void Update()
-    {
-    }
+    
 }

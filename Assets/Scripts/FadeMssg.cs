@@ -22,6 +22,11 @@ public class FadeMssg : MonoBehaviour, IPointerDownHandler {
         }
     }
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         Cursor.lockState = CursorLockMode.Locked;

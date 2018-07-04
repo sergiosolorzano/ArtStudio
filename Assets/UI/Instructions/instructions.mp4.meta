@@ -14,7 +14,7 @@ VideoClipImporter:
   encodeAlpha: 0
   flipVertical: 0
   flipHorizontal: 0
-  importAudio: 1
+  importAudio: 0
   targetSettings:
     0:
       enableTranscoding: 0
@@ -30,8 +30,8 @@ VideoClipImporter:
       codec: 0
       resizeFormat: 0
       aspectRatio: 0
-      customWidth: 1536
-      customHeight: 864
+      customWidth: 1280
+      customHeight: 720
       bitrateMode: 1
       spatialQuality: 1
   userData: 
