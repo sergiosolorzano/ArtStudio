@@ -9,4 +9,8 @@ Web-app has been tested on PC and MacOS systems, Chrome and Firefox browsers.
 
 Try it out [here](https://ceramicartiststudio.azurewebsites.net/)
 
+Video showing Game Instructors: Ceramist Studio Game Scene:
+
+https://github.com/sergiosolorzano/ArtStudio/assets/24430655/d2f87114-a209-45d4-9aa2-1a532c59114f
+
 Published 2017.
