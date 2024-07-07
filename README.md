@@ -1,13 +1,12 @@
-This video was generated using Unity's Cinemachine. It shows someone entering the art studio of an artist who is prototyping with an augmented reality app such as the [Tapgaze mobile app](https://apps.apple.com/gb/app/tapgaze/id1534427791).
+I re-created a ceramist client studio (MudMud Studio) as a video game by modelling and texturing all 3D models. Simiarly to a computer game, you can walk around the ceramist studio. I prepared this project to test WebGL and Unity as a marketing channel for augmented reality apps of a studio I later setup in 2019.
 
-The video was generated as part of the [Tapgaze App's](https://tapgaze.com/) marketing campaign.
+The night sky shows a celestial void formed by the convergence of unity animated particles. The scene is built on Unity, exported as a WebGL application, hosted on Azure and playable on browser.
 
-To develop this WebGL app I used Unity3D, Unity Cinemachine, imported and setup animations into Unity, 3D Modelling in Maya, texturing in Substance Painter and Mudbox, Photoshop CC.
+In this game scene, I created the scene, game mechanics, 3D models, textures and vortex particles.
 
-Modelled and textured in-house except for the characters.
+**App is not supported on mobile, only works on PC/Mac**
+Web-app has been tested on PC and MacOS systems, Chrome and Firefox browsers.
 
-Watch the result:
+Try it out [here](https://ceramicartiststudio.azurewebsites.net/)
 
-https://github.com/sergiosolorzano/ArtStudio/assets/24430655/cfec0242-f2d6-4a9e-8a47-f1c2eee76fda
-
-WebGL App Published 2019, now available in open source.
+Published 2017.
